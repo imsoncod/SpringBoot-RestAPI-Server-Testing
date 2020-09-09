@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.api.recipe.mapper.RecipeMapper">
+    
+    <!-- 레시피 목록 조회 -->
+    <select id="getRecipeList" resultType="com.api.recipe.domain.Recipe">
+                                         
+        select * from recipe order by rno;
+         
+    </select>
+    
+    <!-- 레시피 목록 추가 -->
+    <insert id="createRecipe" parameterType="com.api.recipe.domain.Recipe">
+    	
+    	insert into 
+    	recipe(name, explanation, step) 
+    	values(#{name}, #{explanation}, #{step});
+    	
+    </insert>
+    
+    <!-- 레시피 목록 수정 -->
+    <update id="updateRecipe" parameterType="com.api.recipe.domain.Recipe">
+    	
+    	update recipe
+    	set
+    		name = #{name},
+    		explanation = #{explanation},
+    		step = #{step}
+    	where
+    		rno = #{rno};
+    	
+    </update>
+    
+    <!-- 레시피 목록 삭제 -->
+    <delete id="deleteRecipe" parameterType="int">
+    
+    	delete from recipe where rno = #{rno};
+    
+    </delete>
+    
+</mapper>
